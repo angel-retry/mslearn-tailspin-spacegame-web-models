@@ -11,6 +11,11 @@ steps:
   inputs:
     version: '$(dotnetSdkVersion)'
 
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y mono-complete
+  displayName: 'Install Mono'
+
 - task: DotNetCoreCLI@2
   displayName: 'Restore project dependencies'
   inputs:
@@ -34,7 +39,7 @@ steps:
     majorVersion: '1'
     minorVersion: '0'
     patchVersion: '0'
- 
+
 - task: NuGetCommand@2
   displayName: 'Publish NuGet package'
   inputs:
